@@ -1,0 +1,12 @@
+% Generate good probes for 2 laser-low noise
+clear
+load SingleProbeVariables.mat %all probes
+%load SingleProbeVariables_short.mat %only 1 & 2-way probes
+% Single Probes
+[OverallMCC_probes_LN_2l,ProbesRemoved_probes_LN_2l,ProbesRemoved_names_probes_LN_2l,Opt_Thresh_probes_LN_2l,Good_probes_probes_LN_2l,R_Cond_final_probes_LN_2l] = RemoveProbes_onebyone(probes,R_2l,low_noise,thresh,names);
+% Barcode
+[OverallMCC_barcodes_LN_2l,ProbesRemoved_barcodes_LN_2l,Opt_Thresh_probes_barcodes_LN_2l,Good_probes_final_barcodes_LN_2l,R_Cond_barcodes_LN_2l_final,Probes_Removed_names_barcodes_LN_2l] = RemoveBarcodes_onebyone(Good_probes_probes_LN_2l,R_Cond_final_probes_LN_2l,low_noise,thresh,names)
+% Two Barcode
+[OverallMCC_twobarcodes_LN_2l,ProbesRemoved_twobarcodes_LN_2l,Opt_Thresh_probes_twobarcodes_LN_2l,Good_probes_final_twobarcodes_LN_2l,R_Cond_Barcodes_final_twobarcodes_LN_2l,Probes_Removed_names_twobarcodes_LN_2l] = RemoveTwoBarcodes_onebyone(Good_probes_final_barcodes_LN_2l,R_Cond_barcodes_LN_2l_final,low_noise,thresh,names)
+save('ProbeData_2l_LN')
+
